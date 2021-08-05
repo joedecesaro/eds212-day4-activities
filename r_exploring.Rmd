@@ -7,5 +7,38 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(skimr)
+library(GGally)
+```
+
+## Do some data exploration & summarizing in R
+```{r}
+print(names(diamonds))
+
+print(dim(diamonds))
+
+print(summary(diamonds))
+
+print(head(diamonds))
+
+print(tail(diamonds))
+
+skimr::skim(diamonds)
+
+# Create a pairs plot using `ggpairs()` 
+
+GGally::ggpairs(diamonds)
+
+# Create a basic `ggplot()` scatter plot of diamonds price as a function of carat
+ggplot(data = diamonds, aes(x = carat, y = price)) +
+  geom_point() +
+  aes(color = clarity) +
+  facet_wrap(~cut)
+
+# Create a histogram showing the distribution of values in the `carat` column
+ggplot(data = diamonds, aes(x = carat, fill = color)) +
+  geom_histogram() +
+  aes(color = color)
 ```
 
